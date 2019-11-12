@@ -12,7 +12,7 @@
                 <div class="message" data-v-323d08df=""><span data-v-323d08df="">登陆后享受更多服务</span></div>
             </div>
         </div>
-        <!--  -->
+
         <ol class="top_ol">
             <li>
                 <i class="iconfont icon-wode f_i"></i>
@@ -31,18 +31,15 @@
             </li>
         </ol>
         
-         <!-- 会员 -->
             <div class="vip">
         
                 <div class="vip1">
-                    <!-- <i class="iconfont icon-wode f_i"> -->
                     <span>vip会员</span>
                             <p>开通&nbsp;&nbsp;<span>＞</span></p>
                      </div>
                 </div>
 
                 <div class="vip1">
-                        <!-- <i class="iconfont icon-wode f_i"> -->
                         <span>我的钱包</span>
                                 <p>充值&nbsp;&nbsp;<span>＞</span></p>
                          </div>
@@ -50,14 +47,12 @@
 
 
                 <div class="vip1">
-                        <!-- <i class="iconfont icon-wode f_i"> -->
                         <span>我的上传</span>
                                 <p><span>＞</span></p>
                          </div>
                 </div>
 
                 <div class="vip1">
-                        <!-- <i class="iconfont icon-wode f_i"> -->
                         <span>我的关注</span>
                                 <p><span>＞</span></p>
                          </div>
@@ -89,8 +84,7 @@ export default {
         }
 
         .login-info[data-v-323d08df] {
-            padding: .2rem .2rem .2rem;
-
+           padding: .2rem .2rem 0 .2rem;
         }
 
         .user-info[data-v-323d08df] {
@@ -107,6 +101,9 @@ export default {
         /* 图标 */
         section .top_ol{
             display: flex;
+            height: 0.8rem;
+            align-items: center;
+            border-bottom: 1px solid #f6f6f6;
         }
         section .top_ol li{
            display: flex;
@@ -139,6 +136,7 @@ export default {
             color: #333332;
             font-size: .16rem;
             overflow: hidden; 
+            border-bottom: 1px solid #f6f6f6;
         }
         .vip1{
             display: flex;

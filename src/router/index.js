@@ -25,6 +25,10 @@ const router = new VueRouter({
         {
             path:"/search",
             component:_=>import("../pages/search")
+        },
+        {
+            path:"/details",
+            component:_=>import("../pages/details")
         }
     ]
 })

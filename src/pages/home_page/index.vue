@@ -34,7 +34,7 @@
                     </div>
                     <div class="box3">
                         <span>
-                            <!-- <img src="./img//语言.png" alt=""> -->
+                            <img :src="box3_img">
                         </span>
                         <b class="by">播音郭锐</b>
                         <i>26.1万播放</i>
@@ -77,7 +77,9 @@ export default {
                     text:"主播",
                     imgUrl:"./img/主播.png"
                 },
-            ]
+            ],
+            box3_img:"./img/语言.png"
+
         }
     }
 }
