@@ -9,12 +9,22 @@
 <script>
 import Header from "./common/header"
 import TabBar from "./common/tabBar"
+import { movienowApi } from "./api/movie"
 export default {
   name:"app",
   components:{
     Header,
     TabBar
-  }
+  },
+   created(){
+       this.handleGetMovieList()
+    },
+    methods:{
+      async handleGetMovieList(cityId){
+        let data = await movienowApi(cityId);
+        console.log(data)
+      }
+    }
 }
 </script>
 
