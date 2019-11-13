@@ -26,7 +26,10 @@
 
 <script>
 export default {
-    
+    name:"Sort",
+    created(){
+        document.title=this.$route.meta.title;
+    }
 }
 </script>
 

@@ -27,10 +27,4 @@ module.exports = {
 
 }
 
-// proxy:{
-//     "/ajax":{
-//       target:"https://m.lrts.me",
-//       changeOrigin:true
-//     }
-//   }
 

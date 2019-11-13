@@ -2,7 +2,7 @@
   <div id="app">
     <Header/>
     <router-view class="main"></router-view>
-    <TabBar/>
+    <TabBar v-if="!(this.$route.meta.title == '搜索')"/>
   </div>
 </template>
 
@@ -11,20 +11,12 @@ import Header from "./common/header"
 import TabBar from "./common/tabBar"
 import { movienowApi } from "./api/movie"
 export default {
-  name:"app",
+  name:"App",
   components:{
     Header,
     TabBar
-  },
-   created(){
-       this.handleGetMovieList()
-    },
-    methods:{
-      async handleGetMovieList(cityId){
-        let data = await movienowApi(cityId);
-        console.log(data)
-      }
-    }
+  }
+
 }
 </script>
 

@@ -13,7 +13,10 @@
 
 <script>
 export default {
-    
+    name:"Search",
+    created(){
+        document.title=this.$route.meta.title;
+    }
 }
 </script>
 

@@ -1,25 +1,25 @@
-import http from "@utils/request";
+import http from "../utils/request";
 
 /***
- * 跳转详情页接口
+ * 目录接口
  */
-export const movienowApi = (cityId)=>http({
+export const movienowApi = ()=>http({
     method:"get",
-    url:"/ajax/getBookMenu?bookId=42904&pageNum=1&pageSize=50&sortType=0",
-    // data:{
-    //     id:"13626091"
-    // }
+    url:"/ajax/getAlbumAudios?ablumnId=99118&sortType=0"
 })
 
-/**
- * 
- * 跳转搜索接口
+/***
+ * 首页接口
  */
+export const homenowApi = ()=>http({
+    method:"get",
+    url:"/ajax/getBookTypePage?typeId=6"
+})
+//https://m.lrts.me/ajax/getBookTypePage?typeId=6
 
-export const moviecommingApi = (cityId=10)=>http({
-    methods:"get",
-    url:"/ajax/getHomePage",
-    data:{
-        cityId:cityId
-    }
-})  
+
+
+export const detailsApi = (city)=>http({
+    method:"get",
+    url:"/ajax/getBookInfo?"+city
+})
