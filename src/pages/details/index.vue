@@ -34,14 +34,6 @@
         <div class="book-block">
           <span>{{obj.desc}}</span>
         </div>
-        <div class="book-detail">
-          <div class="book-d">
-            <p>￥{{Math.round(parseInt(price)/100)/10}}/正本</p>
-            <del>原价￥{{Math.round(parseInt(price)/100)/10-10}}</del>
-            <span>限时折扣还剩4个小时</span>
-          </div>
-          <div>会员9折，支持听读券，高清</div>
-        </div>
       </div>
       <div class="user-list"></div>
 
@@ -71,15 +63,14 @@ export default {
     methods: {
         async handleGetdetailsList(city) {
                 let data = await detailsApi(city);
-                 this.obj = data;
+                this.obj = data;
                 this.list = data.extraInfos;
-                this.price = this.obj.priceInfo.price;
         }
     },
     data(){
         return{
             obj:{},
-            price:66,
+            price:100,
             list:[]
         }
     }

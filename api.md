@@ -1,20 +1,14 @@
- https://m.lrts.me/ajax/getAlbumAudios?ablumnId=99118&sortType=0   //天天爱车汇
 
+天天爱车汇  https://m.lrts.me/ajax/getAlbumAudios?ablumnId=99118&sortType=0   
 
-儿童：  https://m.lrts.me/ajax/getCategory
-	https://m.lrts.me/ajax/getNavBar
-	https://m.lrts.me/ajax/getBookTypePage?typeId=6
+详情(二级路由)
+    ->详情接口  https://m.lrts.me/ajax/getBookInfo?id=51187457
+    ->目录接口 https://m.lrts.me/ajax/getBookMenu?bookId=43414&pageNum=1&pageSize=50&sortType=0
 
-出版：	https://m.lrts.me/ajax/getLabelTypePage?labelTypeId=9009&publishType=104
+搜索接口 https://m.lrts.me/ajax/search?keyWord=%E6%89%BE%E5%A6%88%E5%A6%88&pageSize=3
+/*
+    encodeURI("找妈妈") == "%E6%89%BE%E5%A6%88%E5%A6%88" //true
+    decodeURI("%E6%89%BE%E5%A6%88%E5%A6%88") == "找妈妈"
+*/             
 
-主播电台：	https://m.lrts.me/ajax/getBookType?fid=1000&open=1&t=0
-
-人文：		https://m.lrts.me/ajax/getBookTypePage?typeId=80
-
-有声小说：	https://m.lrts.me/ajax/getBookType?fid=1&open=1&t=0
-
-财经：		https://m.lrts.me/ajax/getBookTypePage?typeId=3085
-
-生活：		https://m.lrts.me/ajax/getBookTypePage?typeId=1019
-
-详情-》目录接口 https://m.lrts.me/ajax/getBookMenu?bookId=43414&pageNum=1&pageSize=50&sortType=0
+搜索跳详情接口 https://m.lrts.me/ajax/getAlbumInfo?id=76146
