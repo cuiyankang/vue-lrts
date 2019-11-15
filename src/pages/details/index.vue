@@ -23,59 +23,49 @@
     </div>
 
     <div class="nav">
-      <ul>
-        <li>详情</li>
-        <li>目录</li>
-      </ul>
+        <router-link :to="{name:'dl',params:{path:path}}" tag="a">详情</router-link>
+        <router-link :to="{name:'cl',params:{path:path}}" tag="a">目录</router-link>
     </div>
 
-    <div>
-      <div class="book">
-        <div class="book-block">
-          <span>{{obj.desc}}</span>
-        </div>
-      </div>
-      <div class="user-list"></div>
-
-      <section></section>
-    </div>
-
-    <div class="children"  v-for="(item,index) in list" :key="index">
-      <div class="header">
-        <h3>{{item.title}}</h3>
-      </div>
-      <div class="content" v-html="item.content">
-       
-      </div>
-    </div>
+    <router-view></router-view>
   </main>
 </template>
 
 <script>
 import { detailsApi } from "../../api/movie";
+
 export default {
-    name:"Details",
-    created(){
-        document.title=this.$route.meta.title;
-        let city = 'id='+this.$route.query.id;
-        this.handleGetdetailsList(city);
-    },
-    methods: {
-        async handleGetdetailsList(city) {
-                let data = await detailsApi(city);
-                this.obj = data;
-                this.list = data.extraInfos;
-        }
-    },
-    data(){
-        return{
-            obj:{},
-            price:100,
-            list:[]
-        }
+  name: "Details",
+  created() {
+    document.title = this.$route.meta.title;
+    let city = "id="+this.$route.params.path;
+    this.path = this.$route.params.path;
+    if(this.$route.params.path){
+      this.handleGetdetailsList(city);
+    }else{
+        this.obj = JSON.parse(localStorage.getItem("details_dl"));
+        this.list = JSON.parse(localStorage.getItem("details_dl")).extraInfos;
+        this.path = JSON.parse(localStorage.getItem("details_dl")).id;
     }
-    
-}
+  },
+  methods: {
+    async handleGetdetailsList(city) {
+      console.log(222);
+      let data = await detailsApi(city);
+      this.obj = data;
+      this.list = data.extraInfos;
+    }
+  },
+  data() {
+    return {
+      obj: {},
+      price: 100,
+      list: [],
+      path: "",
+      flg:true
+    };
+  }
+};
 </script>
 
 <style>
@@ -135,17 +125,17 @@ main .desc {
   padding: 0.03rem 0;
 }
 main .nav {
-  margin-bottom: 0.1rem;
-}
-main .nav ul {
+  justify-content: center;
   display: flex;
-  justify-content: space-between;
-  padding: 0 1rem;
-  height: 0.4rem;
   align-items: center;
+  margin-bottom: 0.1rem;
+  height: .36rem;
 }
-main .nav ul li {
-  list-style: none;
+.nav a{
+  line-height: .36rem;
+  text-align: center;
+  display: block;
+  width: .60rem;
 }
 .book {
   border-bottom: 0.08rem solid #f6f6f6;
@@ -205,5 +195,9 @@ main .children {
 }
 .content p img {
   width: 100%;
+}
+.router-link-active {
+  color: #f39c11;
+  border-bottom: 1px solid #f39c11;
 }
 </style>

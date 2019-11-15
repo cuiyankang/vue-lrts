@@ -6,10 +6,15 @@
         <input type="search" placeholder="书名/节目/主播" class="search-field-input" v-model="val" />
         <i class="van-icon van-icon-clear" style="color:#B0B0B0;display:none;"></i>
       </div>
-      <v-touch class="search-field__btn" tag="span" :class="text == '搜索'?'yellow':''">{{text}}</v-touch>
+
+      <v-touch  
+          tag="span" 
+          :class="text == '搜索'?'yellow':''" 
+          v-on:tap="handleVt()"          
+      >{{text}}</v-touch>
     </div>
     <ul>
-      <a class="data" v-for="(item,index) in list">
+      <a class="data" v-for="(item,index) in list" @click="handleSearch('id='+item.id)">
         <div class="left-box">
           <div style="height:.64rem;width:.64rem;">
             <img :src="item.cover" alt />
@@ -59,7 +64,7 @@ export default {
                     let city = "keyWord=" + encodeURI(newval);
                     let data = await searchApi(city);
                     console.log(data);
-                    // this.list = data.data.albumResult ? data.data.albumResult["list"] : [];
+                    this.list = data.data.albumResult ? data.data.albumResult["list"] : [];
         })
         /////////////////
         if(newval.length == 0){
@@ -67,7 +72,16 @@ export default {
             this.text = "取消";
         }
     }
-    
+  },
+  methods:{
+    handleSearch(url){
+      this.$router.push('/program/?'+url+'&name=节目详情')
+    },
+    handleVt(){
+      if(this.text == '取消'){
+        this.$router.back()
+      }
+    }
   }
 };
 </script>

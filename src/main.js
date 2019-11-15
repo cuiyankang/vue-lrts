@@ -2,15 +2,13 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from "./router"
 import VueTouch from "vue-touch"
-// import { Swipe, SwipeItem } from 'vant';
-
-// Vue.use(Swipe).use(SwipeItem);
+import "./lib/loading/index.js"
 import vant from 'vant'
 import 'vant/lib/index.css'; 
- Vue.use(vant)
 
-//使用插件           组件名称
+//使用插件  Vue.use()
 Vue.use(VueTouch,{name:"v-touch"})
+Vue.use(vant)
 
 Vue.config.productionTip = false
 

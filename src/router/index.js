@@ -8,51 +8,124 @@ const router = new VueRouter({
     routes:[
         {
             path:"/",
-            component:_=>import("../pages/home_page"),
+            redirect:'/home_page',
             meta:{
-                title:"首页"
+                title:"首页",
+                flg:true
             }
         },
         {
             path:"/mine",
             component:_=>import("../pages/mine"),
             meta:{
-                title:"我的"
+                title:"我的",
+                flg:true
+            }
+        },
+        {
+            path:"/member",
+            component:_=>import("../pages/member"),
+            meta:{
+                title:"开通VIP会员",
+                flg:true
             }
         },
         {
             path:"/home_page",
             component:_=>import("../pages/home_page"),
             meta:{
-                title:"首页"
+                title:"首页",
+                flg:true
+
             }
         },
         {
             path:"/sort",
             component:_=>import("../pages/sort"),
             meta:{
-                title:"分类"
+                title:"分类",
+                flg:true
             }
         },
         {
             path:"/search",
             component:_=>import("../pages/search"),
             meta:{
-                title:"搜索"
+                title:"搜索",
+                flg:false
             }
         },
-        {
+        {   
+            name:'details',
             path:"/details",
             component:_=>import("../pages/details"),
             meta:{
-                title:"书籍详情"
-            }
+                title:"书籍详情",
+                flg:true
+            },
+            children:[
+                {
+                    name:"dl",
+                    path:"dl",
+                    component:_=>import("../pages/dl"),
+                    meta:{
+                        title:"书籍详情",
+                        flg:true
+                    },
+                },
+                {
+                    name:"cl",
+                    path:"cl",
+                    component:_=>import("../pages/cl"),
+                    meta:{
+                        title:"书籍详情",
+                        flg:true
+                    },
+                }                
+            ]
         },
         {
             path:"/catalog",
             component:_=>import("../pages/catalog"),
             meta:{
-                title:"目录"
+                title:"目录",
+                flg:true
+
+            }
+        },
+        {
+            path:"/program",
+            component:_=>import("../pages/program"),
+            meta:{
+                title:"节目详情",
+                flg:true
+            }
+        },
+        {
+            name:'login',
+            path:'/login',
+            component:_=>import("../pages/login"),
+            meta:{
+                title:"登陆",
+                flg:false
+            }
+        },
+        {
+            name:'register',
+            path:'/register',
+            component:_=>import("../pages/register"),
+            meta:{
+                title:"注册",
+                flg:false
+            }
+        },
+        {
+            name:'boutique',
+            path:'/boutique',
+            component:_=>import("../pages/boutique"),
+            meta:{
+                title:"付费精品",
+                flg:true
             }
         }
     ],

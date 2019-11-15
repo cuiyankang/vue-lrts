@@ -1,35 +1,37 @@
 <template>
     <main>
-        <div class="children">
+        <div class="children" v-for="(item,index) in bookTypeList" :key="index">
             <div class="header">
-                <h3>热门频道</h3>
+                <h3>{{item.name}}</h3>
             </div>
             <div class="children-item">
-                <div>儿童</div>
-                <div>儿童</div>
-                <div>儿童</div>
-                <div>儿童</div>
-                <div>儿童</div>
-                <div>儿童</div>
-                <div>儿童</div>
-                <div>儿童</div>
-                <div>儿童</div>
-                <div>儿童</div>
-                <div>儿童</div>
-                <div>儿童</div>
-                <div>儿童</div>
-                <div>儿童</div>
+                <div v-for="(it,ix) in item.subList" :key="ix">{{it.name}}</div>
             </div>
         </div>
     </main>
 </template>
 
 <script>
+import { SortApi } from "../../api/movie"
 export default {
     name:"Sort",
     created(){
         document.title=this.$route.meta.title;
-    }
+        this.handleSort();
+    },
+    methods:{
+        async handleSort(){
+            let data = await SortApi();
+            console.log(data.data.bookTypeList)
+            this.bookTypeList = data.data.bookTypeList;
+        }
+    },
+    data(){
+        return {
+            bookTypeList:[],
+        }
+    },
+    
 }
 </script>
 
@@ -73,9 +75,6 @@ export default {
         }
         .children .children-item{
             padding: 0.116rem;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
         }
         .children .children-item div{
             width: 0.96rem;
@@ -85,6 +84,11 @@ export default {
             background: #f6f6f6;
             margin-top: .04rem;
             display: inline-block;
+            margin-right: .04rem;
+
+        }
+       .children .children-item div:nth-child(3n){
+           margin-right: 0;
         }
 
 </style>

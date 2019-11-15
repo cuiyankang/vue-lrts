@@ -49,8 +49,6 @@ export default {
         }else{
             this.list = JSON.parse(sessionStorage.getItem("list"));
         }
-        
-
       }
     }
 }

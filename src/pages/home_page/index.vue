@@ -10,11 +10,11 @@
     </div>
 
     <div class="box">
-      <ul>
-        <li v-for="(item,index) in box_li" :key="index">
-          <img :src="item.imgUrl" />
-          <p>{{item.text}}</p>
-        </li>
+      <ul class="_ul">
+        <router-link :to="item.path" tag="li" v-for="(item,index) in box_li" :key="index">
+          <img :src="item.imgUrl"/>
+          <ol class="_ol">{{item.text}}</ol>
+        </router-link>
       </ul>
     </div>
 
@@ -25,7 +25,7 @@
           <span>更多</span>
         </div>
 
-         <a class="data" v-for="(it,ix) in item.list" @click="handlehome('id='+it.url)">
+         <a class="data" v-for="(it,ix) in item.list" @click="handlehome(it.url)">
             <div class="left-box">
               <div>
                 <img
@@ -66,28 +66,24 @@ export default {
     return {
       box_li: [
         {
-          text: "精品",
-          imgUrl: "./img/精品.png"
+          text: "付费精品",
+          imgUrl: "./img/精品.png",
+          path:"/boutique"
         },
         {
           text: "分类",
-          imgUrl: "./img/分类.png"
+          imgUrl: "./img/分类.png",
+          path:"/sort"
         },
         {
-          text: "排行榜",
-          imgUrl: "./img/排行榜.png"
-        },
-        {
-          text: "会员",
-          imgUrl: "./img/会员.png"
-        },
-        {
-          text: "主播",
-          imgUrl: "./img/主播.png"
+          text: "会员专区",
+          imgUrl: "./img/会员.png",
+          path:"/member"
         }
       ],
       box3_img: "./img/语言.png",
-      list: []
+      list: [],
+      url:"",
     };
   },
   created() {
@@ -95,20 +91,13 @@ export default {
   },
   methods: {
     async handleGetHomeList() {
-      if (!sessionStorage.getItem("home")) {
         let data = await homenowApi();
-        console.log(data.data.subTypeRecommendList)
         this.list = data.data.subTypeRecommendList;
-        sessionStorage.setItem("home",JSON.stringify(data.data.subTypeRecommendList))
-      } else {
-        this.list = JSON.parse(sessionStorage.getItem("home"));
-      }
     },
     handlehome(url){
-       this.$router.push('/details/?'+url+'&name=书籍详情')
+       this.$router.push({name:"dl",params:{path:url,nm:"书籍详情"}})//'/details/?'+url+'&name=书籍详情'
     }
-  },
-  
+  }
 };
 </script>
 
@@ -148,7 +137,14 @@ main {
   padding-bottom: 0.5rem;
   padding-top: 0.42rem;
 }
-
+._ol{
+  color: #000 !important ;
+}
+._ul li{
+  border:none!important;
+  display: flex;
+  align-items: center;
+}
 main .banner {
   height: 1.5rem;
   width: 100%;

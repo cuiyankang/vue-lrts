@@ -2,7 +2,7 @@
   <div id="app">
     <Header/>
     <router-view class="main"></router-view>
-    <TabBar v-if="!(this.$route.meta.title == '搜索')"/>
+    <TabBar v-if="this.$route.meta.flg"/>
   </div>
 </template>
 
@@ -15,7 +15,11 @@ export default {
   components:{
     Header,
     TabBar
-  }
+  },
+  data(){
+    return {
+    }
+  },
 
 }
 </script>

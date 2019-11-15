@@ -1,6 +1,5 @@
 <template>
     <section>
-
         <div class="login-info" data-v-323d08df="">
             <div class="avatar" data-v-323d08df="">
                 <img src="http://assets.lrts.me/fed-lrts-wap/img/icon_default_head.eefcc6e.svg" class="avatar-icon"
@@ -8,27 +7,16 @@
 
             </div>
             <v-touch class="user-info" data-v-323d08df="" v-on:tap="handlemi()" tag="div">
-                <div class="name" data-v-323d08df=""><span data-v-323d08df="">马上登录</span></div>
-                <div class="message" data-v-323d08df=""><span data-v-323d08df="">登陆后享受更多服务</span></div>
+                <div class="name" data-v-323d08df=""><span data-v-323d08df="">点击登录</span></div>
+                <div class="message" data-v-323d08df=""><span data-v-323d08df="">开通会员尊享免广告、折扣、赠券等特权</span></div>
             </v-touch>
         </div>
 
         <ol class="top_ol">
             <li>
-                <i class="iconfont icon-wode f_i"></i>
-                <span >个人主页</span>
-            
+               VIP会员套餐
             </li>
-            <li>
-                <i class="iconfont icon-wode f_i"></i>
-                <span>关注</span>
-                
-            </li>
-            <li>
-                <i class="iconfont icon-wode f_i"></i>
-                <span>粉丝</span>
-            
-            </li>
+           
         </ol>
         
             <div class="vip">
@@ -57,13 +45,6 @@
                                 <p><span>＞</span></p>
                          </div>
                 </div>
-
-                <div class="vip1">
-                        <!-- <i class="iconfont icon-wode f_i"> -->
-                        <span>设置</span>
-                                <p><span>＞</span></p>
-                         </div>
-                </div>
                 
             </div>
     </section>
@@ -71,16 +52,9 @@
 
 <script>
 export default {
-    name:"Mine",
+    name:"Member",
     created(){
         document.title=this.$route.meta.title;
-    },
-    beforeRouteEnter(to,form,next){
-        if(localStorage.getItem("token")){
-            next();
-        }else{
-            next({name:"login",query:{path:to.path}})
-        }
     },
     methods:{
         handlemi(){
@@ -97,13 +71,7 @@ export default {
             display: flex;
             background-color: #fff;
         }
-
-        .login-info[data-v-323d08df] {
-           padding: .2rem .2rem 0 .2rem;
-        }
-
         .user-info[data-v-323d08df] {
-
             display: flex;
 
             flex-direction: column;
@@ -111,7 +79,19 @@ export default {
             align-items: flex-start;
             padding: .16rem .13rem;
         }
-       
+        .login-info{
+            border-bottom: .06rem solid #f6f6f6;
+            padding: 0 .09rem;
+        }
+        .login-info img{
+            width: .39rem;
+        }
+        .user-info span{
+            font-size: .09rem;
+        }
+        .name span{
+            font-size: .14rem;
+        }
 
         /* 图标 */
         section .top_ol{
@@ -158,5 +138,10 @@ export default {
             flex-direction:row;
             justify-content: space-between;
             align-items: center;
+        }
+        .avatar{
+            display: flex;
+            flex-direction: column;
+            justify-content:center;
         }
 </style>
