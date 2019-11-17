@@ -9,7 +9,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 .loader {
   height: 40px;
   width: 40px;

@@ -15,6 +15,7 @@ const router = new VueRouter({
             }
         },
         {
+            name:"mine",
             path:"/mine",
             component:_=>import("../pages/mine"),
             meta:{
@@ -23,10 +24,11 @@ const router = new VueRouter({
             }
         },
         {
+            name:"member",
             path:"/member",
             component:_=>import("../pages/member"),
             meta:{
-                title:"开通VIP会员",
+                title:"会员专区",
                 flg:true
             }
         },
@@ -127,6 +129,53 @@ const router = new VueRouter({
                 title:"付费精品",
                 flg:true
             }
+        },
+        {
+            name:'anchor',
+            path:'/anchor',
+            component:_=>import("../pages/anchor"),
+            meta:{
+                title:"主播",
+                flg:true
+            }
+        },
+        {
+            name:'user',
+            path:'/user',
+            component:_=>import("../pages/user"),
+            meta:{
+                title:"个人主页",
+                flg:true
+            },
+            children:[
+                {
+                    name:"principal",
+                    path:"principal",
+                    component:_=>import("../pages/principal"),
+                    meta:{
+                        title:"个人主页",
+                        flg:true
+                    },
+                },
+                {
+                    name:"follow",
+                    path:"follow",
+                    component:_=>import("../pages/follow"),
+                    meta:{
+                        title:"个人主页",
+                        flg:true
+                    },
+                },
+                {
+                    name:"fans",
+                    path:"fans",
+                    component:_=>import("../pages/fans"),
+                    meta:{
+                        title:"个人主页",
+                        flg:true
+                    },
+                }                 
+            ]
         }
     ],
     

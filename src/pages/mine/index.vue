@@ -8,8 +8,7 @@
 
             </div>
             <v-touch class="user-info" data-v-323d08df="" v-on:tap="handlemi()" tag="div">
-                <div class="name" data-v-323d08df=""><span data-v-323d08df="">马上登录</span></div>
-                <div class="message" data-v-323d08df=""><span data-v-323d08df="">登陆后享受更多服务</span></div>
+                <div class="name" data-v-323d08df=""><span data-v-323d08df="">{{username}}</span></div>
             </v-touch>
         </div>
 
@@ -74,9 +73,14 @@ export default {
     name:"Mine",
     created(){
         document.title=this.$route.meta.title;
+        if(localStorage.getItem("token")){
+            this.username = '欢迎你,'+localStorage.getItem("token");
+        }else{
+            this.username = '请先登录';
+        }
     },
     beforeRouteEnter(to,form,next){
-        if(localStorage.getItem("token")){
+        if(to.query.status || localStorage.getItem("token")){
             next();
         }else{
             next({name:"login",query:{path:to.path}})
@@ -85,6 +89,11 @@ export default {
     methods:{
         handlemi(){
             this.$router.push('/login')
+        }
+    },
+    data(){
+        return {
+            username:""
         }
     }
 }

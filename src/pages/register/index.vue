@@ -1,28 +1,50 @@
 <template>
     <section>
         <div class="NAV">
-            <div class="nav1">
-                <label for="">手机号</label>
-                <input type="text" placeholder="11位手机号码"><br>
-            </div>
             <div class="nav2">
-                <label for="">昵称</label>
-                <input type="text" placeholder="4-20个字符" ><br>
+                <label for="">账号</label>
+                <input type="text" placeholder="4-20个字符" v-model="username"><br>
             </div>
             <div class="nav3">
                 <label for="">密码</label>       
-                <input type="password" placeholder="6-20个数字或字母">
+                <input type="password" placeholder="6-20个数字或字母" v-model="pwd">
             </div>
             <div class="mn">
-                    <button>下一步</button>
+                    <v-touch tag="button" v-on:tap="handleVt()">下一步</v-touch>
             </div>
         </div>
     </section>
 </template>
 
 <script>
+import axios from "axios"
+import { registerApi } from "../../api/movie"
+
 export default {
-    
+    name:"register",
+    methods:{
+        async handleVt(){
+            let city = {
+                username:this.username,
+                password:this.pwd
+            }
+            let data = await registerApi(city);
+            console.log(data);
+            if(data.data.status == 1){
+                if(confirm(data.data.info)){
+                    this.$router.push('/login');
+                }
+            }else{
+                alert(data.data.info);
+            }
+        }
+    },
+    data(){
+        return {
+            username:"",
+            pwd:""
+        }
+    }
 }
 </script>
 

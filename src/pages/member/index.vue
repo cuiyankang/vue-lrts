@@ -7,7 +7,7 @@
 
             </div>
             <v-touch class="user-info" data-v-323d08df="" v-on:tap="handlemi()" tag="div">
-                <div class="name" data-v-323d08df=""><span data-v-323d08df="">点击登录</span></div>
+                <div class="name" data-v-323d08df=""><span data-v-323d08df="" v-text="">{{username}}</span></div>
                 <div class="message" data-v-323d08df=""><span data-v-323d08df="">开通会员尊享免广告、折扣、赠券等特权</span></div>
             </v-touch>
         </div>
@@ -55,10 +55,20 @@ export default {
     name:"Member",
     created(){
         document.title=this.$route.meta.title;
+        if(localStorage.getItem("token")){
+            this.username = '欢迎你,'+localStorage.getItem("token");
+        }else{
+            this.username = '请先登录'
+        }
     },
     methods:{
         handlemi(){
-            this.$router.push('/login')
+            this.$router.push({name:'login',query:{path:'/member'}})
+        }
+    },
+    data(){
+        return{
+            username:""
         }
     }
 }

@@ -6,7 +6,11 @@ module.exports = {
             "/ajax": {
                 target: "https://m.lrts.me",
                 changeOrigin: true
-            }
+            },
+            "/users": {
+                target: "http://localhost:3000",
+                changeOrigin: true
+            },
         }
     },
     configureWebpack: {

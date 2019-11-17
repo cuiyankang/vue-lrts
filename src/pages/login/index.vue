@@ -3,20 +3,19 @@
         <div class="Nav">
             <div class="nav1">
                 <label for="">账号</label>
-                <input type="text" placeholder="邮箱/手机号">
+                <input type="text" placeholder="邮箱/手机号" v-model="username">
             </div>
 
             <div class="nav2">
                     <label for="">密码</label>
-                    <input type="text" placeholder="请输入密码">
+                    <input type="password" placeholder="请输入密码" v-model="pwd">
             </div>
         </div>
         <div class="mima">
-            
             <a href="#">忘记密码?</a>
         </div>
         <div class="mbn">
-            <button>登录</button>
+            <v-touch tag="button" v-on:tap="handlelogin()">登录</v-touch>
         </div>
         <div class="login">
             <a href="/#/register" >快速注册</a>
@@ -25,10 +24,37 @@
 </template>
 
 <script>
+import axios from "axios"
+import { loginApi } from "../../api/movie"
+
 export default {
     name:"login",
     created(){
-        console.log(this.$route)
+        console.log(this.$route.query.path)
+    },
+    data(){
+        return {
+            username:"",
+            pwd:""
+        }
+    },
+    methods:{
+        async handlelogin(){
+             let city = {
+                username:this.username,
+                password:this.pwd
+            }
+            let data = await loginApi(city);
+            if(data.data.status == 1){
+                if(confirm(data.data.info)){
+                    localStorage.setItem("token",this.username);
+                    let route_name = this.$route.query.path.replace('/','');
+                    this.$router.push({name:route_name,query:{username:this.username,status:data.data.status}});
+                };
+            }else{
+                alert(data.data.info);
+            }
+        }
     }
 }
 </script>

@@ -66,7 +66,7 @@ export default {
     return {
       box_li: [
         {
-          text: "付费精品",
+          text: "精品",
           imgUrl: "./img/精品.png",
           path:"/boutique"
         },
@@ -76,9 +76,14 @@ export default {
           path:"/sort"
         },
         {
-          text: "会员专区",
+          text: "会员",
           imgUrl: "./img/会员.png",
           path:"/member"
+        },
+        {
+          text: "主播",
+          imgUrl: "./img/主播.png",
+          path:"/anchor"
         }
       ],
       box3_img: "./img/语言.png",
@@ -171,7 +176,7 @@ main .box {
   background: #fff;
   display: flex;
   align-items: center;
-  padding: 0 0.24rem;
+  padding: 0 0.1rem;
   box-sizing: border-box;
   border-bottom: 0.08rem solid #f6f6f6;
 }

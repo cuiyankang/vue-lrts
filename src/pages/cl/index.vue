@@ -36,7 +36,7 @@ export default {//bookId=43415
 
 <style>
 .big_box{
-        height: auto;
+        height: auto !important;
  }
  .big_box h2{
      font-weight: normal;

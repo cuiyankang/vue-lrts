@@ -53,7 +53,7 @@
                         <img :src="box3_img" />
                     </span>
                     <b class="by">{{it.nickName}}</b>
-                    <i>{{it.playCount}}播放</i>
+                    <i>{{(Math.round(parseInt(it.playCount)/1000)/10)}}万播放</i>
                     </div>
                 </div>
                 </a>
@@ -100,7 +100,7 @@
                                     <img :src="urlimg" alt="">
                                 </span>
                                 <b class="by">{{item.announcer}}</b>
-                                <i>{{item.hot}}播放</i>
+                                <i>{{(Math.round(parseInt(item.hot)/1000)/10)}}万播放</i>
                             </div>
                         </div>
                     </a>
@@ -359,7 +359,11 @@ main .children {
 }
 
 .box3 i {
-  font-size: 0.12rem;
+  font-size: 0.12rem !important;
+  border: 1px solid #a8a8a8 !important;
+  border-radius: .04rem !important;
+  padding: .06rem !important;
+  line-height: 0 !important;
 }
 
 main .default {

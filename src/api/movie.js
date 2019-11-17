@@ -103,3 +103,84 @@ export const classifyApi = (city)=>http({//分类精品
     ->精品推荐 https://m.lrts.me/ajax/getBoutiqueResource?entityTypes=[0,2]&tId=5245&p=1&s=8&sort=1
     ->分类精品 https://m.lrts.me/ajax/getBoutiqueResource?entityTypes=[0,2]&tId=5245&p=1&s=20&sort=2
 */
+
+
+
+
+//注册 http://localhost:3000/users/register
+export const registerApi = (city)=>http({//分类精品
+    method:"post",
+    url:"/users/register",
+    data:{
+        username:city.username,
+        password:city.password
+    }
+})
+
+
+//登陆 http://localhost:3000/users/login
+export const loginApi = (city)=>http({//分类精品
+    method:"post",
+    url:"/users/login",
+    data:{
+        username:city.username,
+        password:city.password
+    }
+})
+
+
+
+//推荐主播 https://m.lrts.me/ajax/getRecommendUsers?needAlbum=1&needFollow=1&opType=H&referId=0&size=18&type=1&typeId=0
+export const anchorApi = ()=>http({
+    method:"get",
+    url:"/ajax/getRecommendUsers?needAlbum=1&needFollow=1&opType=H&referId=0&size=18&type=1&typeId=0"
+})
+
+
+
+
+//新晋主播 https://m.lrts.me/ajax/getRecommendUsers?needAlbum=0&needFollow=0&opType=H&referId=0&size=8&type=2&typeId=0
+export const hotApi = ()=>http({
+    method:"get",
+    url:"/ajax/getRecommendUsers?needAlbum=0&needFollow=0&opType=H&referId=0&size=8&type=2&typeId=0"
+})
+
+//阈值加载 https://m.lrts.me/ajax/getRecommendUsers?needAlbum=1&needFollow=1&opType=H&referId=639543292&size=10&type=1&typeId=0
+export const IslodingApi = (city)=>http({
+    method:"get",
+    url:"/ajax/getRecommendUsers?needAlbum=1&needFollow=1&opType=H&"+city+"&size=10&type=1&typeId=0"
+})
+
+//个人主页
+export const userApi = (city)=>http({
+    method:"get",
+    url:"/ajax/userIndexHeadPage?userId="+city
+})
+//https://m.lrts.me/ajax/userIndexHeadPage?userId=207655074
+
+//个人主页
+//  二级路由 ->主页
+export const principalApi = (city)=>http({
+    method:"get",
+    url:"/ajax/userIndexPage?userId="+city
+})
+//https://m.lrts.me/ajax/userIndexPage?userId=207655074
+
+
+//个人主页
+//  二级路由 ->关注
+export const followApi = (city)=>http({
+    method:"get",
+    url:"/ajax/getUserFollowing?userId="+city+"&size=20&referId=0&fans=0&opType=T"
+})
+//https://m.lrts.me/ajax/getUserFollowing?userId=207655074&size=20&referId=0&fans=0&opType=T
+
+
+
+//个人主页
+//  二级路由 ->粉丝
+export const fansApi = (city)=>http({
+    method:"get",
+    url:"/ajax/getUserFollowing?userId="+city+"&size=20&referId=0&fans=1&opType=T"
+})
+// https://m.lrts.me/ajax/getUserFollowing?userId=207655074&size=20&referId=0&fans=1&opType=T
