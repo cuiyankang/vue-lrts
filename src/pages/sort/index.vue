@@ -1,11 +1,8 @@
 <template>
     <main>
-        <div class="children" v-for="(item,index) in bookTypeList" :key="index">
-            <div class="header">
-                <h3>{{item.name}}</h3>
-            </div>
-            <div class="children-item">
-                <div v-for="(it,ix) in item.subList" :key="ix">{{it.name}}</div>
+        <div class="sort">
+            <div class="sort-item">
+                <router-link :to="{name:'boutique',params:{id:item.url,name:item.name}}" tag="div" v-for="(item,index) in bookTypeList" :key="index">{{item.name}}</router-link>
             </div>
         </div>
     </main>
@@ -13,18 +10,26 @@
 
 <script>
 import { SortApi } from "../../api/movie"
+import { boutiqueApi } from "../../api/movie";
+
 export default {
     name:"Sort",
     created(){
         document.title=this.$route.meta.title;
-        this.handleSort();
+        // this.handleSort();
+        this.handleboutique();
     },
     methods:{
-        async handleSort(){
-            let data = await SortApi();
-            console.log(data.data.bookTypeList)
-            this.bookTypeList = data.data.bookTypeList;
-        }
+        // async handleSort(){
+        //     let data = await SortApi();
+        //     console.log(data.data.bookTypeList)
+        //     this.bookTypeList = data.data.bookTypeList;
+        // },
+        async handleboutique() {
+            let data = await boutiqueApi();
+            console.log(data.data.subTypeRecommendList);
+            this.bookTypeList = data.data.subTypeRecommendList;
+        },
     },
     data(){
         return {
@@ -46,19 +51,17 @@ export default {
             padding-bottom: .50rem;
             padding-top: .42rem;
         }
-        main .children {
+        main .sort {
             background: #fff;
             box-sizing: border-box;
-            border-bottom: .08rem solid #f6f6f6;
             line-height: .26667rem;
         }
-        .children .header {
+        .sort .header {
             height: 0.41rem;
             display: flex;
             align-items: center;
         }
-
-        .children .header h3 {
+        .sort .header h3 {
             border-left: 3px solid #f39c11;
             height: 0.2rem;
             font-size: 0.12rem;
@@ -66,28 +69,28 @@ export default {
             padding-left: 0.06rem;
         }
 
-        .children .header span {
+        .sort .header span {
             flex: 1;
             text-align: right;
             padding-right: 0.06rem;
             font-size: 0.12rem;
             color:#f39c11;
         }
-        .children .children-item{
+        .sort .sort-item{
             padding: 0.116rem;
         }
-        .children .children-item div{
+        .sort .sort-item div{
             width: 0.96rem;
-            height: 0.28rem;
             text-align: center;
             color: #666;
             background: #f6f6f6;
             margin-top: .04rem;
             display: inline-block;
             margin-right: .04rem;
-
+            height: 0.4rem;
+            line-height: 0.4rem;
         }
-       .children .children-item div:nth-child(3n){
+       .sort .sort-item div:nth-child(3n){
            margin-right: 0;
         }
 

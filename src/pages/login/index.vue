@@ -30,7 +30,7 @@ import { loginApi } from "../../api/movie"
 export default {
     name:"login",
     created(){
-        console.log(this.$route.query.path)
+        console.log(Boolean( this.$route.query.path == undefined))
     },
     data(){
         return {
@@ -48,8 +48,10 @@ export default {
             if(data.data.status == 1){
                 if(confirm(data.data.info)){
                     localStorage.setItem("token",this.username);
-                    let route_name = this.$route.query.path.replace('/','');
-                    this.$router.push({name:route_name,query:{username:this.username,status:data.data.status}});
+                    console.log(this.$route.query.path)
+                    // let route_name = this.$route.query.path.replace('/','');
+                    this.$router.push({name:'mine',query:{username:this.username,status:data.data.status}});
+                    console.log(data);
                 };
             }else{
                 alert(data.data.info);

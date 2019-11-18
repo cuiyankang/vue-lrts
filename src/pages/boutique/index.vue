@@ -18,16 +18,6 @@
                 </van-swipe-item>
             </van-swipe>
         </div>
-
-        <div class="box">
-            <ul>
-                <li>热销书籍</li>
-                <li>限免</li>
-                <li>限时折扣</li>
-            </ul>
-        </div>
-
-
             <div class="children">
             <div v-for="(item,index) in subTypeRecommendList" :key="index">
                 <div class="header">
@@ -35,7 +25,7 @@
                 <span>更多</span>
                 </div>
 
-                <a class="data" v-for="(it,ix) in item.list" :key="ix">
+                <router-link :to="{name:'dl',params:{path:it.url}}" tag="a" class="data" v-for="(it,ix) in item.list" :key="ix">
                 <div class="left-box">
                     <div>
                     <img :src="it.cover" />
@@ -56,10 +46,12 @@
                     <i>{{(Math.round(parseInt(it.playCount)/1000)/10)}}万播放</i>
                     </div>
                 </div>
-                </a>
+                </router-link>
             </div>
             </div>
     </div>
+
+
     <div class="big_box2"  v-if="!flg">
         <div class="recommend" v-if="flgs">
             <div class="recommend_header">
@@ -67,12 +59,12 @@
                     <span>更多</span>
             </div>
             <ul>
-                <li v-for="(item,index) in recommendList" :key="index">
+                <router-link :to="{name:'dl',params:{path:item.id}}" tag="li" v-for="(item,index) in recommendList" :key="index">
                     <div>
                         <img :src="item.cover">
                     </div>
                     <p>{{item.name}}</p>
-                </li>
+                </router-link>
             </ul>
         </div>
 
@@ -82,7 +74,7 @@
                         <span>更多</span>
                     </div>
             <div v-for="(item,index) in classifyList" :key="index">
-                    <a class="data">    <!--跳转详情 https://m.lrts.me/ajax/getBookInfo?id=91633103  -->
+                    <router-link :to="{name:'dl',params:{path:item.id}}" tag="a" class="data">    <!--跳转详情 https://m.lrts.me/ajax/getBookInfo?id=91633103  -->
                         <div class="left-box">
                             <div>
                                 <img :src="item.cover" alt="">
@@ -103,7 +95,7 @@
                                 <i>{{(Math.round(parseInt(item.hot)/1000)/10)}}万播放</i>
                             </div>
                         </div>
-                    </a>
+                    </router-link>
                 </div>
             </div>
         </div>
@@ -120,6 +112,12 @@ export default {
   name: "Boutique",
   created() {
     this.handleboutique();
+    console.log(this.$route.params);
+    if(this.$route.params.id){
+          this.flg=false;
+          this.handlerecommend(this.$route.params.id);
+          this.handleclassify(this.$route.params.id);
+    }
   },
   methods: {
     async handleboutique() {

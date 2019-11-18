@@ -65,7 +65,12 @@ export default {
     this.handlehot();
   },
   mounted() {
-    window.addEventListener("scroll", this.handleScroll, true);
+    if(this.$route.path  == '/anchor'){
+      window.addEventListener("scroll", this.handleScroll, true);
+    }
+  },
+  beforeDestroy(){
+    window.removeEventListener("scroll", this.handleScroll, true);
   },
   methods: {
     async handleanchor() {
@@ -87,7 +92,7 @@ export default {
       this.isloding = false;
     },
     handleScroll(){
-        let scrollTop = this.$refs.main.scrollTop;
+        let scrollTop = Math.floor(this.$refs.main.scrollTop || document.this.$refs.main.scrollTop || this.$refs.main.pageXOffset);//this.$refs.main.scrollY
         let cH = document.documentElement.clientHeight;
         if(this.isloding == false && scrollTop + cH >= this.$refs.box.clientHeight-900){
           this.isloding = true;

@@ -27,6 +27,7 @@
 import { detailsApi } from "../../api/movie";
 export default {
     created(){
+      console.log(this.$route.params.path)
       if(localStorage.getItem("details_dl")){//如果存在
         if(!(JSON.parse(localStorage.getItem("details_dl")).id == this.$route.params.path)){//如果id不一致
             let city ="id="+this.$route.params.path;
@@ -51,6 +52,7 @@ export default {
     methods:{
         async handleGetDl(city) {
                 let data = await detailsApi(city);
+                console.log(data)
                 localStorage.setItem("details_dl",JSON.stringify(data))
                 this.obj = data;
                 this.list = data.extraInfos;
